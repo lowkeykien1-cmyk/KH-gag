@@ -1,4 +1,0 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KYOSH // Sign in</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
-<body class="login-body"><main class="login-card"><div class="brand-mark">K<span>Y</span></div><p class="eyebrow">PRIVATE CONTROL PANEL</p><h1>Welcome back.</h1><p class="muted">Sign in to KYOSH Console.</p>
-{% if error %}<div class="notice danger">{{ error }}</div>{% endif %}
-<form method="post"><label>Username<input name="username" autocomplete="username" required maxlength="80"></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><button class="primary full" type="submit">ACCESS CONSOLE <span>↗</span></button></form><p class="tiny muted">Private dashboard · authenticated session</p></main></body></html>
