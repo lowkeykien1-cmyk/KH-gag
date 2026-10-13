@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KYOSH | Luck Server Finder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-mark">K</span>
+        <span><strong>KYOSH</strong><small>LUCK SERVER FINDER</small></span>
+      </a>
+      <div class="live-pill"><span class="dot"></span> PUBLIC SERVER SCANNER</div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow"><span class="spark">✦</span> ANIME DICE / SERVER TOOLS</div>
+      <h1>Find your next<br><span>luck server.</span></h1>
+      <p class="hero-copy">Track roll announcements, look up Roblox usernames, and browse public servers with open slots.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="scanTop">Scan servers <span>↗</span></button>
+        <a class="btn btn-ghost" href="https://www.roblox.com/search/users" target="_blank" rel="noopener">Roblox player search ↗</a>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card"><span class="stat-label">AVAILABLE SERVERS</span><strong id="serverCount">--</strong><small>Not full · refreshed on demand</small></article>
+      <article class="stat-card"><span class="stat-label">OPEN PLAYER SLOTS</span><strong id="slotCount">--</strong><small>Based on a 9-player limit</small></article>
+      <article class="stat-card"><span class="stat-label">LUCK STATUS</span><strong class="status-unknown">UNVERIFIED</strong><small>Weather cannot be read from public server data</small></article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel tracker-panel">
+        <div class="panel-head"><div><span class="section-kicker">01 / GLOBAL CHAT</span><h2>Roll tracker</h2></div><span class="panel-icon">⌁</span></div>
+        <p class="muted">Paste a username you saw in Global chat. This saves a local note in this page and looks up their public Roblox profile.</p>
+        <form id="lookupForm">
+          <label for="username">Roblox username</label>
+          <div class="input-row"><input id="username" maxlength="20" placeholder="Enter exact username" autocomplete="off" required><button class="btn btn-primary" type="submit">Find</button></div>
+          <label for="unit">Unit / roll (optional)</label>
+          <input id="unit" maxlength="80" placeholder="e.g. rare unit name">
+          <div class="form-note">This page does not read Anime Dice chat automatically.</div>
+          <button class="btn btn-outline full" type="button" id="saveRoll">＋ Save roll note</button>
+        </form>
+        <div id="userResult" class="user-result hidden"></div>
+        <div class="saved-head"><span>RECENT ROLL NOTES</span><button id="clearNotes" class="text-button" type="button">Clear</button></div>
+        <div id="notesList" class="notes-list"><div class="empty-state">Your saved notes will appear here.</div></div>
+      </article>
+
+      <article class="panel servers-panel">
+        <div class="panel-head"><div><span class="section-kicker">02 / PUBLIC INSTANCES</span><h2>Available servers</h2></div><button class="btn btn-outline btn-small" id="refreshBtn">↻ Refresh</button></div>
+        <div class="server-tools">
+          <div class="searchbox"><span>⌕</span><input id="serverFilter" placeholder="Filter by server ID"></div>
+          <label class="checkbox-line"><input id="showOnlyLow" type="checkbox"> 5 players or fewer</label>
+        </div>
+        <div id="serverMessage" class="message">Click “Scan servers” to load the public server list.</div>
+        <div id="serverList" class="server-list"></div>
+        <button class="btn btn-outline full more-btn hidden" id="moreBtn">Load more servers</button>
+        <div class="footnote">Luck weather is shown as unknown because Roblox's public server list does not include in-game weather state. Player counts can change before you join.</div>
+      </article>
+    </section>
+
+    <footer><span>KYOSH <b>●</b> COMMUNITY TOOL</span><span>Not affiliated with Roblox or Anime Dice.</span></footer>
+  </main>
+  <script>window.KYOSH_PLACE_ID = {{ place_id|tojson }};</script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
